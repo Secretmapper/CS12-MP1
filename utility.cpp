@@ -10,4 +10,8 @@ namespace utility {
         os << str;
     return os.str();
   }
+
+  bool char_in_string(char needle, std::string haystack) {
+    return haystack.find_first_of(needle) == std::string::npos;
+  }
 }

@@ -4,7 +4,8 @@
 #include <string>
 
 namespace utility {
-  std::string repeat(int n, std::string str);
+  std::string repeat(int, std::string);
+  bool char_in_string(char, std::string);
 }
 
 #endif // UTILITY_H_
