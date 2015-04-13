@@ -2,23 +2,32 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 #include "./2048.h"
 #include "./utility.h"
 
 #define CONTROL_STRING "WASDQ"
 
+typedef struct Tile {
+  int x;
+  int y;
+  int value;
+} tile;
+
 // implement the functions declared for the G2048 class here
 G2048::G2048(char* filename) {
   this->filename = filename;
   this->score = 0;
+  this->hasAvailableTile = true;
 }
 
 void G2048::startGame() {
+  srand(time(0));
+
   memset(this->board, 0, sizeof this->board);
 
-
-  while (!this->hasReached2048()) {
+  while (!this->hasReached2048() && this->hasAvailableTile) {
     //clear screen
     if (system("cls")) system("clear");
 
@@ -38,7 +47,37 @@ void G2048::startGame() {
 }
 
 // private
+Tile G2048::randomAvailableTile() {
+  Tile tiles[4 * 4];
+  int tiles_size = 0;
+
+  for (int y = 0; y < 4; y++) {
+    for(int x = 0; x < 4; x++) {
+      if (this->board[y][x] == 0) {
+        Tile tile;
+        tile.x = x;
+        tile.y = y;
+        tile.value = this->board[y][x];
+        tiles[tiles_size] = tile;
+        tiles_size++;
+      }
+    }
+  }
+  Tile tile;
+  if(tiles_size == 0) {
+    this->hasAvailableTile = false;
+    tile.x = tile.y = tile.value = -1;
+  } else {
+    tile = tiles[utility::rand_int(0, tiles_size - 1)];
+  }
+  return tile;
+}
+
 void G2048::addTile() {
+  int value = (utility::rand_int(0, 1) == 0) ? 2 : 4;
+  Tile tile = randomAvailableTile();
+  if (tile.x != -1)
+    this->board[tile.y][tile.x] = value;
 }
 
 char G2048::getInput() {
@@ -70,7 +109,14 @@ void G2048::drawBoard() {
   std::cout << "+" << utility::repeat(4, " - - - - +") << std::endl;
   for (int y = 0; y < 4; y++) {
     // iteratively fill lower ends
-    std::cout << "|" << utility::repeat(4, "         |") << std::endl;
+    std::string str = utility::num_to_str(this->board[0][0]);
+
+    std::cout << "|";
+    for(int x = 0; x < 4; x++) {
+      std::cout << std::setw(9) << this->board[y][x] << "|";
+    }
+    std::cout << std::endl;
+
     std::cout << "+" << utility::repeat(4, " - - - - +") << std::endl;
   }
   std::cout << std::endl;

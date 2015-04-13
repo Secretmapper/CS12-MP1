@@ -1,6 +1,8 @@
 #ifndef __2048__
 #define __2048__
 
+struct Tile;
+
 class G2048 {
     private:
         /*
@@ -53,6 +55,8 @@ class G2048 {
         /*********************************************
         PLACE ANY ADDITIONAL MEMBER DECLARATIONS HERE
         **********************************************/
+        Tile randomAvailableTile();
+        bool hasAvailableTile;
     public:
         /*
             This initializes a game of 2048 - the board, score, and filename.            
