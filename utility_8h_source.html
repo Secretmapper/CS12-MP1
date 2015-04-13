@@ -91,22 +91,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceutility.html">utility</a> {</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;  std::string <a class="code" href="namespaceutility.html#ae3dc19b27be96619f81f85593e4f9429">repeat</a>(<span class="keywordtype">int</span>, std::string);</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="namespaceutility.html#a243a7d8fee32c5bf2f350a189c70611a">char_in_string</a>(<span class="keywordtype">char</span>, std::string);</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="namespaceutility.html#a40dd01017351f03091ac0ef20502a9c6">rand_int</a>(<span class="keywordtype">int</span>, <span class="keywordtype">int</span>);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;  std::string <a class="code" href="namespaceutility.html#af1a6babb0f28fc1e81345c737e2c5aaa">num_to_str</a>(<span class="keywordtype">int</span>);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#endif // UTILITY_H_</span></div>
-<div class="ttc" id="namespaceutility_html_a40dd01017351f03091ac0ef20502a9c6"><div class="ttname"><a href="namespaceutility.html#a40dd01017351f03091ac0ef20502a9c6">utility::rand_int</a></div><div class="ttdeci">int rand_int(int min, int max)</div><div class="ttdef"><b>Definition:</b> utility.cpp:20</div></div>
-<div class="ttc" id="namespaceutility_html_af1a6babb0f28fc1e81345c737e2c5aaa"><div class="ttname"><a href="namespaceutility.html#af1a6babb0f28fc1e81345c737e2c5aaa">utility::num_to_str</a></div><div class="ttdeci">std::string num_to_str(int t)</div><div class="ttdef"><b>Definition:</b> utility.cpp:27</div></div>
-<div class="ttc" id="namespaceutility_html_ae3dc19b27be96619f81f85593e4f9429"><div class="ttname"><a href="namespaceutility.html#ae3dc19b27be96619f81f85593e4f9429">utility::repeat</a></div><div class="ttdeci">std::string repeat(int n, std::string str)</div><div class="ttdef"><b>Definition:</b> utility.cpp:9</div></div>
-<div class="ttc" id="namespaceutility_html_a243a7d8fee32c5bf2f350a189c70611a"><div class="ttname"><a href="namespaceutility.html#a243a7d8fee32c5bf2f350a189c70611a">utility::char_in_string</a></div><div class="ttdeci">bool char_in_string(char needle, std::string haystack)</div><div class="ttdef"><b>Definition:</b> utility.cpp:16</div></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  std::string <a class="code" href="namespaceutility.html#ae3dc19b27be96619f81f85593e4f9429">repeat</a>(<span class="keywordtype">int</span> n , std::string str);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="namespaceutility.html#a243a7d8fee32c5bf2f350a189c70611a">char_in_string</a>(<span class="keywordtype">char</span> needle, std::string haystack);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="namespaceutility.html#a78198cf486557e6cc9f3e6e7198164e3">rand_int</a>(<span class="keywordtype">int</span> a, <span class="keywordtype">int</span> b);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  std::string <a class="code" href="namespaceutility.html#a8c953bd6f3f678989cf3e3efa18cba4e">num_to_str</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif // UTILITY_H_</span></div>
+<div class="ttc" id="namespaceutility_html_a8c953bd6f3f678989cf3e3efa18cba4e"><div class="ttname"><a href="namespaceutility.html#a8c953bd6f3f678989cf3e3efa18cba4e">utility::num_to_str</a></div><div class="ttdeci">std::string num_to_str(int t)</div><div class="ttdoc">Converts Integer to String. </div><div class="ttdef"><b>Definition:</b> utility.cpp:27</div></div>
+<div class="ttc" id="namespaceutility_html_a78198cf486557e6cc9f3e6e7198164e3"><div class="ttname"><a href="namespaceutility.html#a78198cf486557e6cc9f3e6e7198164e3">utility::rand_int</a></div><div class="ttdeci">int rand_int(int min, int max)</div><div class="ttdoc">Random Integer within Range (inclusive) </div><div class="ttdef"><b>Definition:</b> utility.cpp:20</div></div>
+<div class="ttc" id="namespaceutility_html_ae3dc19b27be96619f81f85593e4f9429"><div class="ttname"><a href="namespaceutility.html#ae3dc19b27be96619f81f85593e4f9429">utility::repeat</a></div><div class="ttdeci">std::string repeat(int n, std::string str)</div><div class="ttdoc">Repeats string n times. </div><div class="ttdef"><b>Definition:</b> utility.cpp:9</div></div>
+<div class="ttc" id="namespaceutility_html_a243a7d8fee32c5bf2f350a189c70611a"><div class="ttname"><a href="namespaceutility.html#a243a7d8fee32c5bf2f350a189c70611a">utility::char_in_string</a></div><div class="ttdeci">bool char_in_string(char needle, std::string haystack)</div><div class="ttdoc">Checks if char is in string. </div><div class="ttdef"><b>Definition:</b> utility.cpp:16</div></div>
 <div class="ttc" id="namespaceutility_html"><div class="ttname"><a href="namespaceutility.html">utility</a></div><div class="ttdef"><b>Definition:</b> utility.cpp:8</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 13 2015 12:33:04 for CS12 MP1: 2048 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Apr 13 2015 13:12:02 for CS12 MP1: 2048 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

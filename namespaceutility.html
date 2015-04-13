@@ -91,13 +91,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ae3dc19b27be96619f81f85593e4f9429"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#ae3dc19b27be96619f81f85593e4f9429">repeat</a> (int n, std::string str)</td></tr>
+<tr class="memdesc:ae3dc19b27be96619f81f85593e4f9429"><td class="mdescLeft">&#160;</td><td class="mdescRight">Repeats string n times.  <a href="#ae3dc19b27be96619f81f85593e4f9429">More...</a><br /></td></tr>
 <tr class="separator:ae3dc19b27be96619f81f85593e4f9429"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a243a7d8fee32c5bf2f350a189c70611a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#a243a7d8fee32c5bf2f350a189c70611a">char_in_string</a> (char needle, std::string haystack)</td></tr>
+<tr class="memdesc:a243a7d8fee32c5bf2f350a189c70611a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if char is in string.  <a href="#a243a7d8fee32c5bf2f350a189c70611a">More...</a><br /></td></tr>
 <tr class="separator:a243a7d8fee32c5bf2f350a189c70611a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40dd01017351f03091ac0ef20502a9c6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#a40dd01017351f03091ac0ef20502a9c6">rand_int</a> (int min, int max)</td></tr>
-<tr class="separator:a40dd01017351f03091ac0ef20502a9c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1a6babb0f28fc1e81345c737e2c5aaa"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#af1a6babb0f28fc1e81345c737e2c5aaa">num_to_str</a> (int t)</td></tr>
-<tr class="separator:af1a6babb0f28fc1e81345c737e2c5aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78198cf486557e6cc9f3e6e7198164e3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#a78198cf486557e6cc9f3e6e7198164e3">rand_int</a> (int a, int b)</td></tr>
+<tr class="memdesc:a78198cf486557e6cc9f3e6e7198164e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Random Integer within Range (inclusive)  <a href="#a78198cf486557e6cc9f3e6e7198164e3">More...</a><br /></td></tr>
+<tr class="separator:a78198cf486557e6cc9f3e6e7198164e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c953bd6f3f678989cf3e3efa18cba4e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutility.html#a8c953bd6f3f678989cf3e3efa18cba4e">num_to_str</a> (int)</td></tr>
+<tr class="memdesc:a8c953bd6f3f678989cf3e3efa18cba4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts Integer to String.  <a href="#a8c953bd6f3f678989cf3e3efa18cba4e">More...</a><br /></td></tr>
+<tr class="separator:a8c953bd6f3f678989cf3e3efa18cba4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a243a7d8fee32c5bf2f350a189c70611a"></a>
@@ -124,9 +128,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks if char is in string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">needle</td><td>Character to find. </td></tr>
+    <tr><td class="paramname">haystack</td><td>String to find needle in. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Boolean wheter or not needle is in haystack. </dd></dl>
+
 </div>
 </div>
-<a class="anchor" id="af1a6babb0f28fc1e81345c737e2c5aaa"></a>
+<a class="anchor" id="a8c953bd6f3f678989cf3e3efa18cba4e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -140,9 +154,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Converts Integer to String. </p>
+
 </div>
 </div>
-<a class="anchor" id="a40dd01017351f03091ac0ef20502a9c6"></a>
+<a class="anchor" id="a78198cf486557e6cc9f3e6e7198164e3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -150,13 +166,13 @@ Functions</h2></td></tr>
           <td class="memname">int utility::rand_int </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>min</em>, </td>
+          <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>max</em>&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -165,6 +181,22 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Random Integer within Range (inclusive) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>minimuim range. </td></tr>
+    <tr><td class="paramname">b</td><td>maximuim range (inclusive). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">InvalidArgumentException</td><td>When b &lt; a </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Random number such that a &lt;= n &lt;= b. </dd></dl>
 
 </div>
 </div>
@@ -192,12 +224,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Repeats string n times. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>How many times string is repeated. </td></tr>
+    <tr><td class="paramname">str</td><td>String to repeat. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String repeated n times. </dd></dl>
+
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 13 2015 12:33:04 for CS12 MP1: 2048 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Apr 13 2015 13:12:02 for CS12 MP1: 2048 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
