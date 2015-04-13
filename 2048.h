@@ -55,6 +55,10 @@ class G2048 {
         /*********************************************
         PLACE ANY ADDITIONAL MEMBER DECLARATIONS HERE
         **********************************************/
+        /// Get Random Available Tile
+        /**
+         *  Get Random Available Tile
+         */
         Tile randomAvailableTile();
         bool hasAvailableTile;
     public:
