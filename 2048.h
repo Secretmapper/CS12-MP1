@@ -77,7 +77,8 @@ class G2048 {
         /** Get Random Available Tile.
          *  Sets hasAvailableTile.
          *  @see hasAvailableTile
-         *  @return Random Tile from the board.
+         *  @return Random Tile from the board. Returns Sentinel value of 
+         *          tile.x = -1 when there is no available blank tile.
          */
         Tile randomAvailableTile();
 
