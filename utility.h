@@ -21,6 +21,7 @@ namespace utility {
   /** Random Integer within Range (inclusive)
    * @param a minimuim range.
    * @param b maximuim range (inclusive).
+   * @throws InvalidArgumentException When b < a
    * @return Random number such that a <= n <= b.
    */
   int rand_int(int a, int b);
