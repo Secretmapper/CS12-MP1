@@ -12,9 +12,9 @@
 typedef struct Tile {
   /// x coordinate on board
   int x;
-  /// x coordinate on board
+  /// y coordinate on board
   int y;
-  /// x coordinate on board
+  /// actual value of tile
   int value;
 } tile;
 

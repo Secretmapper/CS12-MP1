@@ -1,66 +1,86 @@
 #ifndef __2048__
 #define __2048__
 
+/** Tile Datastructure
+ */
 struct Tile;
 
 class G2048 {
     private:
-        /*
-            This data member represents the 4x4 board.
-        */
+        /** Board Datastructure. 
+         * Represents the 4x4 board
+         */
         int board[4][4];
-        /*
-            This data member represents the current score for the game.
-        */
+
+        /** Current Score for the Game
+         */
         int score;
-        /*
-            This data member stores the name of the file to which the game is/will be saved.
-        */
+
+        /** Filename where the game will be saved. 
+         */
         char* filename;
-        /*
-            This function randomly adds a tile of value 2 or 4 to the board after each valid turn.
-        */
+
+        /** Adds random tile to the board after every turn. 
+         *  Adds tile of value 2 or 4 to the board every turn.
+         */
         void addTile();
-        /*
-            This function prompts for an input character from the player, then returns the value.
-            The input represents the direction to take, or the player's desire to quit.
-        */
+
+        /** Prompts input character from the player then returns the value. 
+         *  Input represents the direction to take or quit.
+         *  @return Input character
+         */
         char getInput();
-        /*
-            This function moves the tiles in the specified direction,
-            computes and updates the score. It returns true if the state of the board has changed (move is valid).
-        */
+
+        /** Moves the tiles in the specified direction. 
+         *  Computes and updates the score. 
+         *  @return Boolean on wheter the board has changed (move is valid).
+         */
         bool move(char direction);
-        /*
-            This function prints in the terminal the current state of the board.
-        */
+
+        /** Prints in the terminal the current state of the board. 
+         */
         void drawBoard();
-        /*
-            This function checks if the game is already won.
-        */
+        
+        /** Checks if the game is already won.
+         *  @return Is there a 2048 in the board?
+         */
         bool hasReached2048();
-        /*
-            This function checks if there is still a possible move.
-        */
+
+        /** Checks if there is still a possible move.
+         *  There is a possible move when there is still an empty tile.
+         *  Or if it is still possible to combine tiles.
+         */
         bool hasMove();
-        /*
-            This function tries to load a 2048 game from the specified file.
-        */
+        
+        /** Loads the game.
+         *  Loads the game from the filename specified. 
+         */
         void loadGame();
-        /*
-            This function saves the instance of this class to the specified file. 
-            If the argument is NULL, prompt for a valid filename.
-        */
+         
+        /** Saves the game.
+         *  Saves the game to the filename specified.
+         *  Prompts user if filename is NULL.
+         */
         void saveGame();
+
         /*********************************************
         PLACE ANY ADDITIONAL MEMBER DECLARATIONS HERE
         **********************************************/
-        /// Get Random Available Tile
-        /**
-         *  Get Random Available Tile
+
+        /** Wheter there is still an available tile. 
+         *  Value set every game loop .
+         *  @see randomAvailableTile
+         *  Checked to see if there is an available tile.
+         */
+        bool hasAvailableTile;
+
+        /** Get Random Available Tile.
+         *  Sets hasAvailableTile.
+         *  @see hasAvailableTile
+         *  @return Random Tile from the board.
          */
         Tile randomAvailableTile();
-        bool hasAvailableTile;
+
     public:
         /*
             This initializes a game of 2048 - the board, score, and filename.            
