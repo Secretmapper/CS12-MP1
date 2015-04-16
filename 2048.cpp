@@ -31,7 +31,9 @@ void G2048::startGame() {
 
   memset(this->board, 0, sizeof this->board);
 
-  while (!this->hasReached2048() && this->hasAvailableTile) {
+  this->addTile();
+
+  while (!this->hasReached2048() && this->hasMove()) {
     //clear screen
     if (system("cls")) system("clear");
 
@@ -43,10 +45,11 @@ void G2048::startGame() {
     if(input == 'Q') {
       //quit
     } else {
-      this->move(input);
+      bool isMoved = this->move(input);
+      if (isMoved) {
+        this->addTile();
+      }
     }
-
-    this->addTile();
   }
 }
 
@@ -68,10 +71,10 @@ Tile G2048::randomAvailableTile() {
     }
   }
   Tile tile;
-  if(tiles_size == 0) {
-    this->hasAvailableTile = false;
-    tile.x = tile.y = tile.value = -1;
-  } else {
+  tile.x = tile.y = tile.value = -1;
+
+  if (tiles_size > 0) {
+    this->hasAvailableTile = !(tiles_size == 1);
     tile = tiles[utility::rand_int(0, tiles_size - 1)];
   }
   return tile;
@@ -98,7 +101,7 @@ bool G2048::move(char direction) {
   // last_index is the position which
   // can be merged to in the current run
   int last_index;
-
+  bool isMoved = false;
   // should be refactored:
   switch (direction) {
     case 'W':
@@ -109,6 +112,7 @@ bool G2048::move(char direction) {
           if (board[y][x] != 0 && last_index != y) {
             // if can merge or last_index is still empty
             if (board[y][x] == board[last_index][x] || board[last_index][x] == 0) {
+              isMoved = true;
               bool merged = (board[y][x] == board[last_index][x]);
               board[last_index][x] = board[y][x] + board[last_index][x];
               board[y][x] = 0;
@@ -118,7 +122,10 @@ bool G2048::move(char direction) {
             } else {
               last_index = last_index + 1;
               board[last_index][x] = board[y][x];
-              if (last_index != y) board[y][x] = 0;
+              if (last_index != y) {
+                isMoved = true;
+                board[y][x] = 0;
+              }
             }
           }
         }
@@ -133,6 +140,7 @@ bool G2048::move(char direction) {
           if (board[y][x] != 0 && last_index != y) {
             // if can merge or last_index is still empty
             if (board[y][x] == board[last_index][x] || board[last_index][x] == 0) {
+              isMoved = true;
               bool merged = (board[last_index][x] == board[y][x]);
               board[last_index][x] = board[y][x] + board[last_index][x];
               board[y][x] = 0;
@@ -142,7 +150,10 @@ bool G2048::move(char direction) {
             } else {
               last_index = last_index - 1;
               board[last_index][x] = board[y][x];
-              if (last_index != y) board[y][x] = 0;
+              if (last_index != y) {
+                isMoved = true;
+                board[y][x] = 0;
+              }
             }
           }
         }
@@ -156,6 +167,7 @@ bool G2048::move(char direction) {
           if (row[x] != 0 && last_index != x) {
             // if can merge or last_index is still empty
             if (row[x] == row[last_index] || row[last_index] == 0) {
+              isMoved = true;
               bool merged = (row[x] == row[last_index]);
               row[last_index] = row[x] + row[last_index];
               row[x] = 0;
@@ -165,7 +177,10 @@ bool G2048::move(char direction) {
             } else {
               last_index = last_index + 1;
               row[last_index] = row[x];
-              if (last_index != x) row[x] = 0;
+              if (last_index != x) {
+                isMoved = true;
+                row[x] = 0;
+              }
             }
           }
         }
@@ -179,6 +194,7 @@ bool G2048::move(char direction) {
           if (row[x] != 0 && last_index != x) {
             // if can merge or last_index is still empty
             if (row[x] == row[last_index] || row[last_index] == 0) {
+              isMoved = true;
               bool merged = (row[x] == row[last_index]);
               row[last_index] = row[x] + row[last_index];
               row[x] = 0;
@@ -188,14 +204,18 @@ bool G2048::move(char direction) {
             } else {
               last_index = last_index - 1;
               row[last_index] = row[x];
-              if (last_index != x) row[x] = 0;
+              if (last_index != x) {
+                isMoved = true;
+                row[x] = 0;
+              }
             }
           }
         }
       }
       break;
   } 
-  return true;
+
+  return isMoved;
 }
 
 void G2048::drawBoard() {
@@ -217,5 +237,32 @@ void G2048::drawBoard() {
 }
 
 bool G2048::hasReached2048() {
+  return false;
+}
+
+bool G2048::hasMove() {
+  if (this->hasAvailableTile) {
+    return true;
+  }
+
+  int dirs[4][2] = {{0, -1},
+                    {1 , 0},
+                    {0 , 1},
+                    {-1, 0}};
+  // grid iteration
+  for (int x = 0; x < 4; x++) {
+    for (int y = 0; y < 4; y++) {
+      // adjacency iteration
+      for (int i = 0; i < 4; i++) {
+        int _x = x + dirs[i][0];
+        int _y = y + dirs[i][1];
+        if ((_x == x && _y == y ) || _x < 0 || _x >= 4 || _y < 0 || _y >= 4)
+          continue;
+        if (this->board[y][x] == this->board[_y][_x])
+          return true;
+      }
+    }
+  }
+
   return false;
 }
