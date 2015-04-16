@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <functional>
 
 #include "./2048.h"
 #include "./utility.h"
@@ -94,16 +95,106 @@ char G2048::getInput() {
 }
 
 bool G2048::move(char direction) {
-  switch(direction) {
-      case 'W':
-        break;
-      case 'A':
-        break;
-      case 'S':
-        break;
-      case 'D':
-        break;
-    }
+  // last_index is the position which
+  // can be merged to in the current run
+  int last_index;
+
+  // should be refactored:
+  switch (direction) {
+    case 'W':
+      for (int x = 0; x < 4; x++) {
+        last_index = 0;
+        int (&board)[4][4] = this->board;
+        for (int y = 0; y <= 3; y++) {
+          if (board[y][x] != 0 && last_index != y) {
+            // if can merge or last_index is still empty
+            if (board[y][x] == board[last_index][x] || board[last_index][x] == 0) {
+              bool merged = (board[y][x] == board[last_index][x]);
+              board[last_index][x] = board[y][x] + board[last_index][x];
+              board[y][x] = 0;
+              // last index is now first tile after,
+              // since it's now empty from the merge.
+              if (merged) last_index = last_index + 1;
+            } else {
+              last_index = last_index + 1;
+              board[last_index][x] = board[y][x];
+              if (last_index != y) board[y][x] = 0;
+            }
+          }
+        }
+      }
+
+      break;
+    case 'S':
+      for (int x = 0; x < 4; x++) {
+        last_index = 3;
+        int (&board)[4][4] = this->board;
+        for (int y = 2; y >= 0; y--) {
+          if (board[y][x] != 0 && last_index != y) {
+            // if can merge or last_index is still empty
+            if (board[y][x] == board[last_index][x] || board[last_index][x] == 0) {
+              bool merged = (board[last_index][x] == board[y][x]);
+              board[last_index][x] = board[y][x] + board[last_index][x];
+              board[y][x] = 0;
+              // last index is now first tile after,
+              // since it's now empty from the merge.
+              if (merged) last_index = last_index - 1;
+            } else {
+              last_index = last_index - 1;
+              board[last_index][x] = board[y][x];
+              if (last_index != y) board[y][x] = 0;
+            }
+          }
+        }
+      }
+      break;
+    case 'A':
+      for (int y = 0; y < 4; y++) {
+        last_index = 0;
+        int (&row)[4] = this->board[y];
+        for (int x = 1; x <= 3; x++) {
+          if (row[x] != 0 && last_index != x) {
+            // if can merge or last_index is still empty
+            if (row[x] == row[last_index] || row[last_index] == 0) {
+              bool merged = (row[x] == row[last_index]);
+              row[last_index] = row[x] + row[last_index];
+              row[x] = 0;
+              // last index is now first tile after,
+              // since it's now empty from the merge.
+              if (merged) last_index = last_index + 1;
+            } else {
+              last_index = last_index + 1;
+              row[last_index] = row[x];
+              if (last_index != x) row[x] = 0;
+            }
+          }
+        }
+      }
+      break;
+    case 'D':
+      for (int y = 0; y < 4; y++) {
+        last_index = 3;
+        int (&row)[4] = this->board[y];
+        for (int x = 2; x >= 0; x--) {
+          if (row[x] != 0 && last_index != x) {
+            // if can merge or last_index is still empty
+            if (row[x] == row[last_index] || row[last_index] == 0) {
+              bool merged = (row[x] == row[last_index]);
+              row[last_index] = row[x] + row[last_index];
+              row[x] = 0;
+              // last index is now first tile after,
+              // since it's now empty from the merge.
+              if (merged) last_index = last_index - 1;
+            } else {
+              last_index = last_index - 1;
+              row[last_index] = row[x];
+              if (last_index != x) row[x] = 0;
+            }
+          }
+        }
+      }
+      break;
+  } 
   return true;
 }
 
