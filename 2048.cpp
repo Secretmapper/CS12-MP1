@@ -37,6 +37,8 @@ void G2048::startGame() {
     //clear screen
     if (system("cls")) system("clear");
 
+    std::cout << "Score: " << this->score << std::endl;
+
     this->drawBoard();
 
     std::cout << "(W)Up (S)Down (A)Left (D)Right (Q)Quit: ";
@@ -118,7 +120,10 @@ bool G2048::move(char direction) {
               board[y][x] = 0;
               // last index is now first tile after,
               // since it's now empty from the merge.
-              if (merged) last_index = last_index + 1;
+              if (merged) {
+                this->score += board[last_index][x];
+                last_index = last_index + 1;
+              }
             } else {
               last_index = last_index + 1;
               board[last_index][x] = board[y][x];
@@ -146,7 +151,10 @@ bool G2048::move(char direction) {
               board[y][x] = 0;
               // last index is now first tile after,
               // since it's now empty from the merge.
-              if (merged) last_index = last_index - 1;
+              if (merged) {
+                this->score += board[last_index][x];
+                last_index = last_index - 1;
+              }
             } else {
               last_index = last_index - 1;
               board[last_index][x] = board[y][x];
@@ -173,7 +181,10 @@ bool G2048::move(char direction) {
               row[x] = 0;
               // last index is now first tile after,
               // since it's now empty from the merge.
-              if (merged) last_index = last_index + 1;
+              if (merged) {
+                this->score += row[last_index];
+                last_index = last_index + 1;
+              }
             } else {
               last_index = last_index + 1;
               row[last_index] = row[x];
@@ -200,7 +211,10 @@ bool G2048::move(char direction) {
               row[x] = 0;
               // last index is now first tile after,
               // since it's now empty from the merge.
-              if (merged) last_index = last_index - 1;
+              if (merged) {
+                this->score += row[last_index];
+                last_index = last_index - 1;
+              }
             } else {
               last_index = last_index - 1;
               row[last_index] = row[x];
