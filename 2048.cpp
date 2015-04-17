@@ -60,6 +60,11 @@ void G2048::startGame() {
       }
     }
   }
+
+  if (this->hasReached2048()) {
+    if (system("cls")) system("clear");
+    std::cout << "You won!" << std::endl;
+  }
 }
 
 // private
@@ -258,6 +263,13 @@ void G2048::drawBoard() {
 }
 
 bool G2048::hasReached2048() {
+  for (int y = 0; y < 4; y++) {
+    for (int x = 0; x < 4; x++) {
+      if (this->board[y][x] == 2048) {
+        return true;
+      }
+    }
+  }
   return false;
 }
 
