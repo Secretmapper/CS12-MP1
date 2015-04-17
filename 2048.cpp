@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <sstream>
 #include <functional>
 
 #include "./2048.h"
@@ -29,7 +30,11 @@ G2048::G2048(char* filename) {
 void G2048::startGame() {
   srand(time(0));
 
-  memset(this->board, 0, sizeof this->board);
+  if (this->filename != NULL) {
+    this->loadGame();
+  } else {
+    memset(this->board, 0, sizeof this->board);
+  }
 
   this->addTile();
 
@@ -46,6 +51,8 @@ void G2048::startGame() {
 
     if(input == 'Q') {
       //quit
+      this->saveGame();
+      break;
     } else {
       bool isMoved = this->move(input);
       if (isMoved) {
@@ -279,4 +286,41 @@ bool G2048::hasMove() {
   }
 
   return false;
+}
+
+void G2048::loadGame() {
+  std::fstream of(this->filename, std::ios::in);
+  std::string line;
+
+  for (int i = 0; i < 4; i++) {
+    std::getline(of, line);
+    std::stringstream  linestream(line);
+
+    int value;
+    for (int j = 0; j < 4; j++) {
+      linestream >> value;
+      this->board[i][j] = value;
+    }
+  }
+  of.close();
+}
+
+void G2048::saveGame() {
+  if (this->filename == NULL) {
+    std::cout << "Type in a save file name: ";
+    std::string filename = "";
+    std::cin >> filename;
+    this->filename = new char[filename.length() + 1];
+    std::strcpy(this->filename, filename.c_str());
+  }
+
+  std::fstream of(this->filename, std::ios::out);
+
+  for (int i = 0; i < 4; i++) {
+    for (int j = 0; j < 4; j++) {
+      of << this->board[i][j] << " ";
+    }
+    of << std::endl;
+  }
+  of.close();
 }
