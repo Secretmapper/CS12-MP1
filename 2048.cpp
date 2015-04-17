@@ -39,7 +39,7 @@ void G2048::startGame() {
   this->addTile();
 
   while (!this->hasReached2048() && this->hasMove()) {
-    //clear screen
+    // clear screen
     if (system("cls")) system("clear");
 
     std::cout << "Score: " << this->score << std::endl;
@@ -49,8 +49,8 @@ void G2048::startGame() {
     std::cout << "(W)Up (S)Down (A)Left (D)Right (Q)Quit: ";
     char input = this->getInput();
 
-    if(input == 'Q') {
-      //quit
+    if (input == 'Q') {
+      // quit
       this->saveGame();
       break;
     } else {
@@ -68,7 +68,7 @@ Tile G2048::randomAvailableTile() {
   int tiles_size = 0;
 
   for (int y = 0; y < 4; y++) {
-    for(int x = 0; x < 4; x++) {
+    for (int x = 0; x < 4; x++) {
       if (this->board[y][x] == 0) {
         Tile tile;
         tile.x = x;
@@ -101,8 +101,8 @@ char G2048::getInput() {
   do {
     std::cin >> input;
     // while not inputting any char in WASDQ
-  } while(utility::char_in_string(input, CONTROL_STRING));
-  
+  } while (utility::char_in_string(input, CONTROL_STRING));
+
   return input;
 }
 
@@ -234,7 +234,7 @@ bool G2048::move(char direction) {
         }
       }
       break;
-  } 
+  }
 
   return isMoved;
 }
@@ -247,7 +247,7 @@ void G2048::drawBoard() {
     std::string str = utility::num_to_str(this->board[0][0]);
 
     std::cout << "|";
-    for(int x = 0; x < 4; x++) {
+    for (int x = 0; x < 4; x++) {
       std::cout << std::setw(9) << this->board[y][x] << "|";
     }
     std::cout << std::endl;
