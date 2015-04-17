@@ -30,3 +30,4 @@
 # Docs
 html/
 *.save
+emcc-build/*

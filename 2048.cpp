@@ -39,6 +39,9 @@ void G2048::startGame() {
   this->addTile();
 
   while (!this->hasReached2048() && this->hasMove()) {
+
+    std::cout << std::endl;
+
     // clear screen
     if (system("cls")) system("clear");
 
